@@ -9,13 +9,13 @@ function CtxProvider(props) {
   let cartItemLength = cartItems.length;
 
   function handleOrder() {
-    setOrder(true);
-
-    setTimeout(() => {
-      console.log("Your Order has been placed. Thank you");
-      setCartItems([]);
-      setOrder(false);
-    }, 3000);
+    if (cartItemLength > 0) {
+      setOrder(true);
+      setTimeout(() => {
+        setCartItems([]);
+        setOrder(false);
+      }, 3000);
+    }
   }
 
   useEffect(() => {
