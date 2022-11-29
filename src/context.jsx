@@ -5,7 +5,18 @@ const customCtx = createContext();
 function CtxProvider(props) {
   const [photos, setPhotos] = useState([]);
   const [cartItems, setCartItems] = useState([]);
+  const [order, setOrder] = useState(false);
   let cartItemLength = cartItems.length;
+
+  function handleOrder() {
+    setOrder(true);
+
+    setTimeout(() => {
+      console.log("Your Order has been placed. Thank you");
+      setCartItems([]);
+      setOrder(false);
+    }, 3000);
+  }
 
   useEffect(() => {
     const Data = async () => {
@@ -39,7 +50,15 @@ function CtxProvider(props) {
 
   return (
     <customCtx.Provider
-      value={{ photos, toggleFavourtie, addToCart, cartItems, cartItemLength }}
+      value={{
+        photos,
+        toggleFavourtie,
+        addToCart,
+        cartItems,
+        cartItemLength,
+        handleOrder,
+        order,
+      }}
     >
       {props.children}
     </customCtx.Provider>
