@@ -3,7 +3,7 @@ import { customCtx } from "./../context";
 import CartItem from "../components/cartItem";
 
 function Cart() {
-  const { cartItems, cartItemLength, handleOrder, order, orderMessage } =
+  const { cartItems, cartItemLength, handleOrder, order, message } =
     useContext(customCtx);
   const cartItemElements = cartItems.map((item) => (
     <CartItem key={item.id} item={item} />
@@ -24,8 +24,8 @@ function Cart() {
         <button onClick={() => handleOrder()}>
           {order ? "Ordering..." : "Place Order"}
         </button>
-        <p>{orderMessage}</p>
       </div>
+      <p style={{ textAlign: "center" }}>{message}</p>
     </main>
   );
 }

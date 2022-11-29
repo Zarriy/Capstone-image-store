@@ -6,16 +6,21 @@ function CtxProvider(props) {
   const [photos, setPhotos] = useState([]);
   const [cartItems, setCartItems] = useState([]);
   const [order, setOrder] = useState(false);
+  const [message, setMessage] = useState("");
   let cartItemLength = cartItems.length;
 
   function handleOrder() {
     if (cartItemLength > 0) {
       setOrder(true);
       setTimeout(() => {
+        setMessage("Order has been placed, Thank you");
         setCartItems([]);
         setOrder(false);
-      }, 3000);
+      }, 2000);
+    } else {
+      setMessage("Cart is empty");
     }
+    setTimeout(() => setMessage(""), 4000);
   }
 
   useEffect(() => {
@@ -58,6 +63,7 @@ function CtxProvider(props) {
         cartItemLength,
         handleOrder,
         order,
+        message,
       }}
     >
       {props.children}
