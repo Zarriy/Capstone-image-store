@@ -1,5 +1,6 @@
 import { useState, useContext } from "react";
 import { customCtx } from "./../context";
+import PropTypes from "prop-types";
 
 function Image({ className, src, id, isFavorite }) {
   const [hover, setHover] = useState(false);
@@ -22,13 +23,11 @@ function Image({ className, src, id, isFavorite }) {
     </div>
   );
 }
+Image.propTypes = {
+  className: PropTypes.string,
+  id: PropTypes.string,
+  src: PropTypes.string.isRequired,
+  isFavorite: PropTypes.bool,
+};
 
 export default Image;
-// # Challenge
-
-// On the Image component, track the hover state
-
-// 1. Create state boolean for "hovered"
-// 2. When the mouse enters the Image's div, set "hovered" to true
-// 3. When the mouse leaves the Image's div, set "hovered" to false
-// 4. Log "hovered" to the console so you know it's changing successfully.
