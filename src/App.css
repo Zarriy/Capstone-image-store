@@ -156,7 +156,8 @@ ion-icon[name="heart-circle-outline"] {
   left: 4%;
   color: var(--blue);
 }
-ion-icon[name="add-circle-outline"] {
+ion-icon[name="add-circle-outline"],
+ion-icon[name="remove-circle-outline"] {
   position: absolute;
   right: 4%;
   top: 4%;

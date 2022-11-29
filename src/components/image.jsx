@@ -4,7 +4,9 @@ import PropTypes from "prop-types";
 
 function Image({ className, src, id, isFavorite }) {
   const [hover, setHover] = useState(false);
-  const { toggleFavourtie } = useContext(customCtx);
+  const { toggleFavourtie, addToCart, cartItems } = useContext(customCtx);
+
+  const inCartElem = cartItems.some((item) => item.id === id);
 
   return (
     <div
@@ -18,7 +20,12 @@ function Image({ className, src, id, isFavorite }) {
           name={`heart-${isFavorite ? "circle-outline" : "outline"}`}
         ></ion-icon>
       )}
-      {hover && <ion-icon name="add-circle-outline"></ion-icon>}
+      {hover && (
+        <ion-icon
+          name={inCartElem ? "remove-circle-outline" : "add-circle-outline"}
+          onClick={() => addToCart({ url: src, id, isFavorite })}
+        ></ion-icon>
+      )}
       <img src={src} className="image-grid" />
     </div>
   );

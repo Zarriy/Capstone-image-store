@@ -4,6 +4,8 @@ const customCtx = createContext();
 
 function CtxProvider(props) {
   const [photos, setPhotos] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
+
   useEffect(() => {
     const Data = async () => {
       const fetching = await fetch(
@@ -25,8 +27,20 @@ function CtxProvider(props) {
     });
   };
 
+  const addToCart = (data) => {
+    const find = cartItems.some((item) => item.id === data.id);
+    if (find) {
+      setCartItems((prev) => prev.filter((item) => item.id !== data.id));
+    } else {
+      setCartItems((prev) => [...prev, data]);
+    }
+  };
+  console.log(cartItems);
+
   return (
-    <customCtx.Provider value={{ photos, toggleFavourtie }}>
+    <customCtx.Provider
+      value={{ photos, toggleFavourtie, addToCart, cartItems }}
+    >
       {props.children}
     </customCtx.Provider>
   );
