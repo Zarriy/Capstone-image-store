@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { customCtx } from "./../context";
 import { Link } from "react-router-dom";
 
 function Header() {
+  const { cartItemLength } = useContext(customCtx);
   return (
     <header>
       <Link to="/">
@@ -9,6 +11,9 @@ function Header() {
       </Link>
       <Link to="/cart">
         <ion-icon name="cart-outline"></ion-icon>
+        <strong className="cardNumber">
+          {cartItemLength === 0 ? "" : cartItemLength}
+        </strong>
       </Link>
     </header>
   );

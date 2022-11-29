@@ -5,6 +5,7 @@ const customCtx = createContext();
 function CtxProvider(props) {
   const [photos, setPhotos] = useState([]);
   const [cartItems, setCartItems] = useState([]);
+  let cartItemLength = cartItems.length;
 
   useEffect(() => {
     const Data = async () => {
@@ -35,11 +36,10 @@ function CtxProvider(props) {
       setCartItems((prev) => [...prev, data]);
     }
   };
-  console.log(cartItems);
 
   return (
     <customCtx.Provider
-      value={{ photos, toggleFavourtie, addToCart, cartItems }}
+      value={{ photos, toggleFavourtie, addToCart, cartItems, cartItemLength }}
     >
       {props.children}
     </customCtx.Provider>
